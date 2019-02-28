@@ -1,101 +1,110 @@
 
-function suma (a,b){
-    return a+b;
-}
-
-console.log(suma(10,13));
-
-function resta(a,b){
-    return a-b;
-}
-
-console.log(resta(10,13));
-
-function multiplicacion(a,b){
-    return a*b;
-}
-console.log(multiplicacion(10,13));
-
-function division(a,b){
-    if(b==0){
-        console.log("no es valido ");
-        
-    }
-    else{
-        return a/b;
-    }
-
-}
-
-function potenciacion(a,b){
-    if(b==0){
-        return 1
-    }
-    else{
-        let res = 1
-        for(let i=0;i<b;i++){
-            res=res * a
-        }
-     return res;     
-    }  
-}
-
-modulo = (a,b)=>{
-    return a%b;
-}
-
-console.log(modulo(9,3));
-
-raiz =(a) =>{
-    return Math.sqrt(a).toFixed(2);
-}
-console.log(raiz(4));
-
-seno =(a)=>{
-    return Math.sin(a).toFixed(2);
-}
-console.log(seno(9));
-
-coseno =(a)=>{
-    return Math.cos(a).toFixed(2);
-}
-
-console.log(coseno(9));
-
-tangente =(a)=>{
-    return Math.tan(a).toFixed(2);
-}
 
 document.getElementById("Boton").addEventListener("click",function iniciar(){
 
-    while(true){
+    let suma = (operacion) =>{
+        let b = operacion.split("+")
+        let contador = 0
+        for(let i = 0; i < b.length; i++){
+            contador = contador + Number(b[i])
+        }
+        return contador;
+    }
+
+    let resta = (operacion) =>{
+        let a = operacion.split("-").join(" -").split(" ")
+        let contador = 0
+        for (let i=0; i < a.length; i++){
+            contador = contador + Number(a[i])
+        }
+        return contador;
+    }
+
+    let multiplicacion = (operacion) =>{
+        let a = operacion.split("*")
+        let contador = 1
+        for(let i=0; i < a.length; i++){
+            contador = contador * Number(a[i])
+        }
+        return contador
+     }
+
+    function division(a,b){
+        if(b==0){
+            console.log("no es valido ");
+            
+        }
+        else{
+            return a/b;
+        }
+
+    }
+
+    function potenciacion(a,b){
+        if(b==0){
+            return 1
+        }
+        else{
+            let res = 1
+            for(let i=0;i<b;i++){
+                res=res * a
+            }
+        return res;     
+        }  
+    }
+
+    modulo = (a,b)=>{
+        return a%b;
+    }
+
+    console.log(modulo(9,3));
+
+    raiz =(a) =>{
+        return Math.sqrt(a).toFixed(2);
+    }
+    console.log(raiz(4));
+
+    seno =(a)=>{
+        return Math.sin(a).toFixed(2);
+    }
+    console.log(seno(9));
+
+    coseno =(a)=>{
+        return Math.cos(a).toFixed(2);
+    }
+
+    console.log(coseno(9));
+
+    tangente =(a)=>{
+        return Math.tan(a).toFixed(2);
+    }
+    let bandera=true;
+    while(bandera==true){
         let numeromenu = prompt("Ingresar el numero correspondiente en el menú: ","0");
-        numeromenu = parseInt(numeromenu);
+        numeromenu = Number(numeromenu);
             
         switch (numeromenu) {
             case 0:
-            console.log("hola hpta");
+                bandera=false;
+            //console.log("hola hpta");
             
                 break;
             case 1:
                 let opsuma = prompt("ingrese la operacion ", "3+3");
-                opsuma = opsuma.split("+");
-                let resultadoSuma = suma(Number(opsuma[0]),Number(opsuma[1]));
-                alert("El resultado de la operación es: "+resultadoSuma);
+                let resultadosuma = suma(opsuma)
+                alert("El resultado de la operación es: "+resultadosuma);
                 break;
 
             case 2:
                 let opresta = prompt("ingrese la operacion", "1-1");
-                opresta = opresta.split("-");
-                let resultadoresta = resta(Number(opresta[0]),Number(opresta[1]));
+                let resultadoresta = resta(opresta)
                 alert("EL resultado de la operación es: "+resultadoresta);
                 break;
 
             case 3:
                 let opmult = prompt("ingrese la operacion ", "2*2");
-                opmult = opmult.split("*");
-                let resultadomult = multiplicacion(Number(opmult[0]),Number(opmult[1]));
-                alert("El resultado de la operación es: "+resultadomult);
+                let resultadomult = multiplicacion(opmult)
+                alert("El resultado de la operación es: "+resultadomult)
                 break;
 
             case 4:
@@ -143,6 +152,7 @@ document.getElementById("Boton").addEventListener("click",function iniciar(){
                 alert("El resultado de la operación es: "+resultadotan);
                 break;
             default:
+                bandera=false;
                 break;
         }
     }
